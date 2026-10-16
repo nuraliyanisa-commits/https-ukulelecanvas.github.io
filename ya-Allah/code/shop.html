@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Ukulele Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #0284c7, #0d9488); color: #1e293b; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0284c7, #0d9488); color: white; padding: 1rem 2rem; text-align: center; }
+        nav { background: #0f172a; padding: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; }
+        nav a:hover, nav a.active { background: #0284c7; }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 300px; object-fit: cover; }
+        .product-info { padding: 1.5rem; }
+        .price { font-size: 1.25rem; font-weight: bold; color: #0284c7; margin: 0.5rem 0; }
+        .buy-btn { display: inline-block; width: 100%; background: #0d9488; color: white; text-align: center; padding: 0.75rem; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 1rem; }
+        .buy-btn:hover { background: #0f766e; }
+        footer { text-align: center; padding: 2rem; background: #0f172a; color: white; margin-top: 3rem; }
+    h2 {font-size: 25px; color:aliceblue;}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ukulele Canvas</h1>
+        <p>Recommended Ukuleles & Accessories</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chords.html">Chords</a>
+        <a href="shop.html" class="active">Shop</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2 style="margin-bottom: 1.5rem;">Our Recommendations</h2>
+        <div class="grid">
+            <div class="product-card">
+                <img src="img/shop1" alt="Soprano Ukulele">
+                <div class="product-info">
+                    <h3>Mahogany Soprano Ukulele</h3>
+                    <p class="price">RM159.99</p>
+                    <p>Perfect starter instrument with rich warmth and bright traditional ukulele sounds.</p>
+                    <a href="https://amazon.com" target="_blank" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600" alt="Concert Ukulele">
+                <div class="product-info">
+                    <h3>Ukulele Starter Pack</h3>
+                    <p class="price">RM89.99</p>
+                    <p>Includes gig bag, clip-on tuner, spare strings, and tutorial booklet.</p>
+                    <a href="https://amazon.com" target="_blank" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=600" alt="Clip-on Tuner">
+                <div class="product-info">
+                    <h3>Digital Clip-On Tuner</h3>
+                    <p class="price">RM32.99</p>
+                    <p>Fast, high-precision chromatic tuner designed for ukulele pitch detection.</p>
+                    <a href="https://amazon.com" target="_blank" class="buy-btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Nur Aliya Nisa Binti Mohd Affendi | DDB0302 | For Educational Purposes.</p>
+    </footer>
+
+</body>
+</html>

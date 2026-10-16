@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ukulele Chords Guide - Ukulele Hub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        nav {
+            background: #0f172a;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+        nav a:hover, nav a.active {
+            background: #0284c7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .search-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .search-box:focus {
+            border-color: #0284c7;
+        }
+        .chords-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .chord-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .chord-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .chord-card h3 {
+            font-size: 1.4rem;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+        }
+        .svg-container {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+        .chord-info {
+            font-size: 0.9rem;
+            color: #475569;
+            text-align: left;
+            width: 100%;
+        }
+        .chord-info p {
+            margin-bottom: 0.5rem;
+        }
+        .chord-info strong {
+            color: #0f172a;
+        }
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+            font-size: 1.1rem;
+            display: none;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f172a;
+            color: white;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ukulele Canvas</h1>
+        <p>Interactive 16-Chord Library & Fingering Diagrams</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chords.html" class="active">Chords</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Search and Filter Bar -->
+        <div class="search-section">
+            <h2>Search Chord Guide</h2>
+            <input type="text" id="searchInput" class="search-box" placeholder="Search chord (e.g. C, Dm, G7)..." onkeyup="filterChords()">
+        </div>
+
+        <!-- Chords Grid -->
+        <div class="chords-grid" id="chordsGrid">
+            <div class="no-results" id="noResults">No matching ukulele chords found.</div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nur Aliya Nisa Binti Mohd Affendi | DDB0302 | For Educational Purposes.</p>
+    </footer>
+
+    <script>
+        // Data for the 16 requested chords
+        // frets array order: [G, C, E, A] (0 = Open string, >0 = Fret position)
+        const chordData = [
+            {
+                name: "C Major",
+                frets: [0, 0, 0, 3],
+                fingers: "Ring finger on 3rd fret of A string.",
+                sound: "Bright, fundamental major tone. Perfect starting chord for beginners."
+            },
+            {
+                name: "C7 Major",
+                frets: [0, 0, 0, 1],
+                fingers: "Index finger on 1st fret of A string.",
+                sound: "Bluesy dominant 7th character. Ideal bridge chord leading into F Major."
+            },
+            {
+                name: "Cm (C Minor)",
+                frets: [0, 3, 3, 3],
+                fingers: "Barre index or use index/middle/ring on 3rd fret of C, E, and A strings.",
+                sound: "Somber and introspective minor harmonic flavor."
+            },
+            {
+                name: "D Major",
+                frets: [2, 2, 2, 0],
+                fingers: "Index, middle, and ring fingers on 2nd fret of G, C, and E strings.",
+                sound: "Uplifting, resonant tone widely used in folk and pop rhythms."
+            },
+            {
+                name: "D7 Major",
+                frets: [2, 0, 2, 0],
+                fingers: "Barre 2nd fret on G and E strings (Hawaiian style) or barre full fret.",
+                sound: "Warm, transitional dominant quality."
+            },
+            {
+                name: "Dm (D Minor)",
+                frets: [2, 2, 1, 0],
+                fingers: "Index on 1st fret E string, middle on 2nd fret G string, ring on 2nd fret C string.",
+                sound: "Rich, emotive minor voice with balanced midrange warmth."
+            },
+            {
+                name: "E Major",
+                frets: [4, 4, 4, 2],
+                fingers: "Index on 2nd fret A string, barre G, C, E on 4th fret.",
+                sound: "Vibrant and energetic, adding dynamic brilliance to chord progressions."
+            },
+            {
+                name: "Em (E Minor)",
+                frets: [0, 4, 3, 2],
+                fingers: "Diagonal staircase: Index on 2nd fret A, middle on 3rd fret E, ring on 4th fret C.",
+                sound: "Melancholic yet uplifting quality, essential for pop ballads."
+            },
+            {
+                name: "F Major",
+                frets: [2, 0, 1, 0],
+                fingers: "Index on 1st fret E string, middle on 2nd fret G string.",
+                sound: "Full, warm signature major chord found across almost every music style."
+            },
+            {
+                name: "F7 Major",
+                frets: [2, 3, 1, 0],
+                fingers: "Form F Major, then place ring finger on 3rd fret of C string.",
+                sound: "Spicy jazz/blues dominant texture that builds tension."
+            },
+            {
+                name: "G Major",
+                frets: [0, 2, 3, 2],
+                fingers: "Index on 2nd fret C, ring on 3rd fret E, middle on 2nd fret A string.",
+                sound: "Classic, versatile major triad essential for thousands of song arrangements."
+            },
+            {
+                name: "G7 Major",
+                frets: [0, 2, 1, 2],
+                fingers: "Index on 1st fret E, middle on 2nd fret C, ring on 2nd fret A string.",
+                sound: "Classic V7 tension chord that naturally leads back home to C Major."
+            },
+            {
+                name: "Gm (G Minor)",
+                frets: [0, 2, 3, 1],
+                fingers: "Index on 1st fret A, middle on 2nd fret C, ring on 3rd fret E string.",
+                sound: "Deeply emotional, romantic minor timbre with smooth resolution."
+            },
+            {
+                name: "A Major",
+                frets: [2, 1, 0, 0],
+                fingers: "Index on 1st fret C string, middle on 2nd fret G string.",
+                sound: "Clear, ringing open major chord with punchy high harmonics."
+            },
+            {
+                name: "Am (A Minor)",
+                frets: [2, 0, 0, 0],
+                fingers: "Middle finger on 2nd fret of G string.",
+                sound: "One of the easiest chords to play; produces a clean, nostalgic minor feel."
+            },
+            {
+                name: "A7 Major",
+                frets: [1, 0, 0, 0],
+                fingers: "Index finger on 1st fret of C string.",
+                sound: "Smooth 7th voicing that creates an effortless transition to D minor or D major."
+            }
+        ];
+
+        // Function to create dynamic SVG Chord Charts
+        function createSVGChordDiagram(frets) {
+            const width = 140;
+            const height = 150;
+            const margin = { top: 30, right: 20, bottom: 20, left: 20 };
+            const numFrets = 4;
+            const strings = ['G', 'C', 'E', 'A'];
+            const fretSpacing = 22;
+            const stringSpacing = 30;
+
+            let svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" style="display:block; margin:auto;">`;
+
+            // String Names Header
+            strings.forEach((str, i) => {
+                const x = margin.left + i * stringSpacing;
+                svg += `<text x="${x}" y="15" font-size="12" font-weight="bold" fill="#334155" text-anchor="middle">${str}</text>`;
+            });
+
+            // Nut (Thick line at top)
+            svg += `<line x1="${margin.left}" y1="${margin.top}" x2="${margin.left + 3 * stringSpacing}" y2="${margin.top}" stroke="#0f172a" stroke-width="4"/>`;
+
+            // Fret Lines
+            for (let i = 1; i <= numFrets; i++) {
+                const y = margin.top + i * fretSpacing;
+                svg += `<line x1="${margin.left}" y1="${y}" x2="${margin.left + 3 * stringSpacing}" y2="${y}" stroke="#cbd5e1" stroke-width="1.5"/>`;
+            }
+
+            // Strings Vertical Lines
+            for (let i = 0; i < 4; i++) {
+                const x = margin.left + i * stringSpacing;
+                svg += `<line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + numFrets * fretSpacing}" stroke="#64748b" stroke-width="2"/>`;
+            }
+
+            // Draw Finger Dots & Open String Indicators
+            frets.forEach((fret, stringIdx) => {
+                const x = margin.left + stringIdx * stringSpacing;
+                
+                if (fret === 0) {
+                    // Open string circle above nut
+                    svg += `<circle cx="${x}" cy="${margin.top - 8}" r="3.5" fill="none" stroke="#0284c7" stroke-width="2"/>`;
+                } else if (fret > 0) {
+                    // Finger dot on string/fret
+                    const y = margin.top + (fret - 0.5) * fretSpacing;
+                    svg += `<circle cx="${x}" cy="${y}" r="7" fill="#0284c7"/>`;
+                    svg += `<text x="${x}" y="${y + 3.5}" font-size="9" font-weight="bold" fill="white" text-anchor="middle">${fret}</text>`;
+                }
+            });
+
+            svg += `</svg>`;
+            return svg;
+        }
+
+        // Render Chord Cards into Grid
+        function renderChords(filterText = '') {
+            const grid = document.getElementById('chordsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            // Clear current cards except no-results message
+            grid.innerHTML = '';
+            grid.appendChild(noResults);
+
+            let visibleCount = 0;
+
+            chordData.forEach(chord => {
+                if (chord.name.toLowerCase().includes(filterText.toLowerCase())) {
+                    visibleCount++;
+                    const card = document.createElement('div');
+                    card.className = 'chord-card';
+                    card.innerHTML = `
+                        <h3>${chord.name}</h3>
+                        <div class="svg-container">
+                            ${createSVGChordDiagram(chord.frets)}
+                        </div>
+                        <div class="chord-info">
+                            <p><strong>Fingering:</strong> ${chord.fingers}</p>
+                            <p><strong>Sound & Tone:</strong> ${chord.sound}</p>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Real-time Search Handler
+        function filterChords() {
+            const query = document.getElementById('searchInput').value;
+            renderChords(query);
+        }
+
+        // Initial rendering on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChords();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Classes - Ukulele Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: linear-gradient(135deg, #0284c7, #0d9488); color: #1e293b; line-height: 1.6; }
+        header { background: linear-gradient(135deg, #0284c7, #0d9488); color: white; padding: 1rem 2rem; text-align: center; }
+        nav { background: #0f172a; padding: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 600; padding: 0.5rem 1rem; border-radius: 6px; }
+        nav a:hover, nav a.active { background: #0284c7; }
+        .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .location-img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-top: 1rem; }
+        form label { display: block; font-weight: bold; margin-top: 1rem; }
+        form input, form select, form textarea { width: 100%; padding: 0.75rem; margin-top: 0.25rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+        form button { width: 100%; background: #0284c7; color: white; padding: 0.75rem; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; margin-top: 1.5rem; cursor: pointer; }
+        form button:hover { background: #0369a1; }
+        footer { text-align: center; padding: 2rem; background: #0f172a; color: white; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ukulele Canvas</h1>
+        <p>Location & Music Class Registration</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="chords.html">Chords</a>
+        <a href="shop.html">Shop</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+
+    <div class="container">
+        <div class="contact-grid">
+            <div class="card">
+                <h2>GotUke Ukulele</h2>
+                <p><strong>Address:</strong> 1&3, Jalan Theatre, Taman Jubilee, 30300, Ipoh, Perak</p>
+                <p><strong>Opening Hours:</strong> Mon - Sat: 9:00 AM - 7:00 PM</p>
+                <p><strong>Phone:</strong> 017-563 8718</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m11!1m3!1d3!2d101.0828272!3d4.5949222999999995!2m2!1f0!2f90!3m2!1i1024!2i768!4f75!3m3!1m2!1s0x31caed1eeecb6517%3A0x73715317f7f293c2!2sGotUke%20Ukulele!4v1791918028350" width="100%" height="220px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+           <img class="images/images.jpg"></div>
+            </div>
+
+            <div class="card">
+                <h2>Apply for Ukulele Classes</h2>
+                <form action="#" method="POST" onsubmit="alert('Thank you for registering! We will contact you soon.'); return false;">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="nisa comel">
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="ipn253710153@kptm.edu.my">
+
+                    <label for="level">Skill Level</label>
+                    <select id="level">
+                        <option>Complete Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Master Player</option>
+                    </select>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="3" placeholder="Tell us about your musical background..."></textarea>
+
+                    <button type="submit">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Nur Aliya Nisa Binti Mohd Affendi | DDB0302 | For Educational Purposes.</p>
+    </footer>
+
+</body>
+</html>
